@@ -3,7 +3,7 @@ Javascript library that generates Lorem Ipsum.
 
 ## How to use LoremJS
 
-Get a text with 300 words :
+Get a text of 300 words :
 
 ```shell
 LoremJS.get(300);

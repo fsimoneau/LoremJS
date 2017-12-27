@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Test</title>
+	<script src="lorem.js"></script>
+	<script>
+	
+	var test = function()
+	{
+		//document.getElementsByTagName("body")[0].innerHTML = LoremJS.get(300, 4);
+		LoremJS.get(10,"#idTest");
+		LoremJS.get(300, 2, ".classTest");
+	}
+	
+	</script>
+</head>
+<body onload="test()">
+	<div id="idTest"></div>
+	<div class="classTest"></div>
+	<div class="classTest"></div>
+</body>
+</html>
