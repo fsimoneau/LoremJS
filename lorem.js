@@ -2,10 +2,11 @@ var LoremJS = {};
 
 LoremJS.generator = {};
 
-LoremJS.get = function(numberOfWords, paragraphs = 1, selector = null)
+LoremJS.get = function(numberOfWords, paragraphs, selector)
 {
-	if(numberOfWords < 0)
-		throw new Error('Number of words is less than 0');
+	if(numberOfWords < 0){throw new Error('Number of words is less than 0');}
+	
+	if(paragraphs === undefined){paragraphs = 1;}
 	
 	if(typeof paragraphs === "string") //if user wrote a selector but not a paragraph
 	{
@@ -33,7 +34,7 @@ LoremJS.get = function(numberOfWords, paragraphs = 1, selector = null)
 		lorem += "</p>";
 	}
 	
-	if(selector !== null)
+	if(selector !== undefined)
 	{
 		if(selector.charAt(0) === "#")
 			document.getElementById(selector.substr(1)).innerHTML += lorem;
@@ -45,7 +46,7 @@ LoremJS.get = function(numberOfWords, paragraphs = 1, selector = null)
 				if(y === 0)
 					allClass[y].innerHTML += lorem;
 				else
-					allClass[y].innerHTML += LoremJS.get(numberOfWords, paragraphs)
+					allClass[y].innerHTML += LoremJS.get(numberOfWords, paragraphs);
 			}
 		}
 		else
@@ -61,7 +62,7 @@ LoremJS.get = function(numberOfWords, paragraphs = 1, selector = null)
 // Text generator below
 
 
-LoremJS.generator.newWord = function(previousWord = '')
+LoremJS.generator.newWord = function(previousWord)
 {
 	var word = LoremJS.words[Math.floor(Math.random()*LoremJS.words.length)];
 	while(word === previousWord)
@@ -71,9 +72,9 @@ LoremJS.generator.newWord = function(previousWord = '')
 	return word;
 };
 
-LoremJS.generator.findSmallWord = function(previousWord = '')
+LoremJS.generator.findSmallWord = function(previousWord)
 {
-	var word = LoremJS.generator.newWord(previousWord)
+	var word = LoremJS.generator.newWord(previousWord);
 	while(word.length >=4)
 	{
 		word = LoremJS.generator.newWord(previousWord);
@@ -81,8 +82,10 @@ LoremJS.generator.findSmallWord = function(previousWord = '')
 	return word;
 };
 
-LoremJS.generator.choosePunctuation = function(dotNumber = 0)
+LoremJS.generator.choosePunctuation = function(dotNumber)
 {
+	if(dotNumber === undefined){dotNumber = 0;}
+	
 	var randomForDot = Math.random();
 	var randomForComma = Math.random();
 	
